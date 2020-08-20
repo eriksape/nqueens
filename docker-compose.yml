@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  database:
+    image: postgres:12.4-alpine
+    volumes:
+      - dbdata:/var/lib/postgresql/postgresql/data
+    environment:
+      PGDATA: /var/lib/postgresql/postgresql/data
+      POSTGRES_DB: db_queens
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: db_password
+    ports:
+      - 1000:5432
+  queens:
+    image: python:3.8-alpine
+    working_dir: /var/www/queens
+    volumes:
+      - ./generator/.:/var/www/queens
+volumes:
+  dbdata:

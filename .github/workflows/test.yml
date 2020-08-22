@@ -14,4 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run the test with docker-compose
-      run: docker-compose run queens python -m pytest
+      run: docker-compose run queens python -m pytest tests/tests.py
+    - name: Run proposed tests
+      run: docker-compose run queens python -m pytest tests/tests_solutions.py

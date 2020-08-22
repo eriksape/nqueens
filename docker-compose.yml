@@ -12,9 +12,17 @@ services:
     ports:
       - 1000:5432
   queens:
-    image: python:3.8-alpine
+    build: ./generator
     working_dir: /var/www/queens
     volumes:
       - ./generator/.:/var/www/queens
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_DATABASE: db_queens
+      DB_USERNAME: db_user
+      DB_PASSWORD: db_password
+    depends_on:
+      - database
 volumes:
   dbdata:

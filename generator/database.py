@@ -1,6 +1,6 @@
 import os
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine, Column, Integer, ARRAY, ForeignKey, BigInteger, Boolean
+from sqlalchemy import create_engine, Column, Integer, ARRAY, ForeignKey, BigInteger
 from sqlalchemy.ext.declarative import declarative_base
 
 database_string = "postgresql://{}:{}@{}:{}/{}".format(
@@ -17,6 +17,7 @@ connection = Session()
 
 models = declarative_base()
 
+
 class Case(models):
     """The NQueen's case"""
     __tablename__ = 'cases'
@@ -24,9 +25,13 @@ class Case(models):
     dimension = Column(Integer)
     solutions = Column(BigInteger)
 
+
 class Answer(models):
     """The NQueen Solutions model"""
     __tablename__ = 'answers'
     id = Column(BigInteger, primary_key=True)
     case_id = Column(Integer, ForeignKey('cases.id'))
     solution = Column(ARRAY(Integer))
+
+
+models.metadata.create_all(database)

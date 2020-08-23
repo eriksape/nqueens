@@ -3,14 +3,14 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, Column, Integer, ARRAY, ForeignKey, BigInteger
 from sqlalchemy.ext.declarative import declarative_base
 
-database_string = "postgresql://{}:{}@{}:{}/{}".format(
+database_string = "postgresql+psycopg2://{}:{}@{}:{}/{}".format(
     os.environ['DB_USERNAME'],
     os.environ['DB_PASSWORD'],
     os.environ['DB_HOST'],
     os.environ['DB_PORT'],
     os.environ['DB_DATABASE']
 )
-database = create_engine(database_string)
+database = create_engine(database_string, executemany_mode='batch')
 
 Session = sessionmaker(database)
 connection = Session()
@@ -30,7 +30,7 @@ class Answer(models):
     """The NQueen Solutions model"""
     __tablename__ = 'answers'
     id = Column(BigInteger, primary_key=True)
-    case_id = Column(Integer, ForeignKey('cases.id'))
+    dimension = Column(Integer)
     solution = Column(ARRAY(Integer))
 
 

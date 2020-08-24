@@ -11,7 +11,6 @@ services:
       POSTGRES_PASSWORD: db_password
     ports:
       - 1000:5432
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf
   nqueens:
     build: ./nqueens
     working_dir: /var/www/nqueens

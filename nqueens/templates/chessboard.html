@@ -66,7 +66,7 @@
         }
 
         const drawSolutions = (solutions) => {
-            svg.selectAll('.queen').remove() 
+            svg.selectAll('.queen').remove()
             solutions.forEach((solution,index) => {
                     console.log
                     svg.append("text")
@@ -92,8 +92,10 @@
                 throw new Error(response.statusText);
             })
             .then(json => {
-                drawChessBoard()
-                drawSolutions(json.data[0].solution)
+                drawChessBoard();
+                if(json.data.length > 0)
+                    drawSolutions(json.data[0].solution);
+                else svg.selectAll('.queen').remove()
             }).catch(error => {
                 document.querySelector('#chessboard').innerHTML = error;
             })
@@ -109,7 +111,9 @@
                 throw new Error(response.statusText);
             })
             .then(json => {
-                drawSolutions(json.data[0].solution)
+                if(json.data.length > 0)
+                    drawSolutions(json.data[0].solution);
+                else svg.selectAll('.queen').remove()
             }).catch(error => {
                 document.querySelector('#chessboard').innerHTML = error;
             })

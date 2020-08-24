@@ -4,7 +4,6 @@ from flask_cors import CORS
 from sqlalchemy.orm import scoped_session
 from werkzeug.exceptions import HTTPException
 
-from app import models
 from app.models import Answer, Case
 from app.database import SessionLocal, engine
 from app.queens import ChessBoard
@@ -16,6 +15,7 @@ app.session = scoped_session(SessionLocal, scopefunc=_app_ctx_stack.__ident_func
 
 @app.cli.command('initdb')
 def initdb():
+    from app import models
     models.Base.metadata.create_all(bind=engine)
 
 

@@ -1,6 +1,6 @@
 import datetime
 from sqlalchemy import Column, Integer, ARRAY, BigInteger
-from .database import Base
+from app.database import Base
 
 
 class DictMixIn:

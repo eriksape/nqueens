@@ -45,3 +45,16 @@ We can see there are not solutions listed for dimension 2x2 or 3x3, that's becau
 We can see the stored solutions in http://localhost:1001/
 
 ![web_stored_solutions](https://github.com/eriksape/nqueens/blob/master/.github/web_stored_solutions.png?raw=true)
+
+To run the project we need Docker installed in your system.
+`docker-compose up`
+
+To create the database run the script
+`docker-compose run nqueens flask initdb`
+
+To run the tests we have some scripts:
+
+ - This is to check from 1x1 to 12x12 `docker-compose run nqueens python -m pytest app/tests/tests.py` helped me with some refactors
+ - This is to run from 8x8 to 15x15 `docker-compose run nqueens python -m pytest app/tests/tests_solutions_not_saving.py`
+ - This is to run from 8x8 to 15x15 and save it into database `docker-compose run nqueens python -m pytest app/tests/tests_solutions.py`
+ - This is to run from 8x8 to 15x15 from database `docker-compose run nqueens python -m pytest app/tests/tests_solutions_stored.py`

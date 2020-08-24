@@ -1,5 +1,5 @@
 from app.queens import ChessBoard
-from .known_solutions import solutions
+from app.tests.known_solutions import solutions
 
 
 class TestSolutionsNotSaving(object):

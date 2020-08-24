@@ -31,6 +31,10 @@ We can see the count per record in the datase with the next query:
 
 ![stored_solutions](https://github.com/eriksape/nqueens/blob/master/.github/stored_solutions.png?raw=true)
 
+We can see there is not solutions listed for dimension 2x2 or 3x3, thats because ther are not know solutions as we can see on the follow query:
+
+![query_cases](https://github.com/eriksape/nqueens/blob/master/.github/query_cases.png?raw=true)
+
 ## References
 
 - Martin Richards https://www.cl.cam.ac.uk/~mr10/backtrk.pdf

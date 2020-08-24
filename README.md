@@ -44,7 +44,7 @@ We can see there are not solutions listed for dimension 2x2 or 3x3, that's becau
 
 We can see the stored solutions in http://localhost:1001/
 
-![web_stored_solutions](https://github.com/eriksape/nqueens/blob/master/.github/web_stored_solutions.png?raw=true)
+![web_stored_solutions](https://github.com/eriksape/nqueens/blob/master/.github/web__stored_solutions.png?raw=true)
 
 To run the project we need Docker installed in your system.
 `docker-compose up`

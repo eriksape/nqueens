@@ -13,11 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Initilize database
+      run: docker-compose run nqueens flask initdb
     - name: Run the test with docker-compose
-      run: docker-compose run queens python -m pytest tests/tests.py
-    - name: Run proposed tests without store it en database
-      run: docker-compose run queens python -m pytest tests/tests_solutions_not_saving.py
-    - name: Run proposed tests
-      run: docker-compose run queens python -m pytest tests/tests_solutions.py
+      run: docker-compose run nqueens python -m pytest app/tests/tests.py
+    - name: Run proposed tests without store it in database
+      run: docker-compose run nqueens python -m pytest app/tests/tests_solutions_not_saving.py
+    - name: Run proposed tests and store it in database
+      run: docker-compose run nqueens python -m pytest app/tests/tests_solutions.py
     - name: Run to test stored solutions
-      run: docker-compose run queens python -m pytest tests/tests_solutions_stored.py
+      run: docker-compose run nqueens python -m pytest app/tests/tests_solutions_stored.py

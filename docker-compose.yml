@@ -11,18 +11,27 @@ services:
       POSTGRES_PASSWORD: db_password
     ports:
       - 1000:5432
-  queens:
-    build: ./generator
-    working_dir: /var/www/queens
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+  nqueens:
+    build: ./nqueens
+    working_dir: /var/www/nqueens
+    command: /bin/sh -c "flask run --host=0.0.0.0"
     volumes:
-      - ./generator/.:/var/www/queens
+      - ./nqueens/.:/var/www/nqueens
     environment:
       DB_HOST: database
       DB_PORT: 5432
       DB_DATABASE: db_queens
       DB_USERNAME: db_user
       DB_PASSWORD: db_password
+      FLASK_APP: main.py
+      FLASK_ENV: development
+      HOST: 0.0.0.0
+      PORT: 5000
+      DEBUG: "true"
     depends_on:
       - database
+    ports: 
+      - 1001:5000
 volumes:
   dbdata:

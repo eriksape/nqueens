@@ -1,4 +1,4 @@
-from queens import ChessBoard
+from app.queens import ChessBoard
 from known_solutions import solutions
 
 

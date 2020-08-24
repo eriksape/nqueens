@@ -1,0 +1,121 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>NQueen Problem</title>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <div style="margin-left: 100px;">
+        <input type="text" id="dimension" value="8"><button id="search">search</button><button id="next">Next</button>
+    </div>
+    <div id="chessboard"></div>
+    <script>
+        let svg,
+        marginTop = 50,
+        marginLeft = 30,
+        fieldSize = 40,
+        boardDimension,
+        boardSize,
+        page = 1;
+
+        const drawChessBoard = () => {
+            let board =[];
+    
+            for(var i = 0; i < boardDimension*boardDimension; i++) {
+                board.push({
+                    x: i % boardDimension,
+                    y: Math.floor(i / boardDimension),
+                    piece: 0
+                });
+            };
+
+            let div = d3.select("#chessboard")
+                .append("div")
+                .style("position", "fixed")
+                .style("top", marginTop + "px")
+                .style("left", marginLeft + "px")
+                .style("width", boardSize + "px")
+                .style("height", boardSize + "px");
+
+            svg = div.append("svg")
+                .attr("width", boardSize + "px")
+                .attr("height", boardSize + "px")
+                .selectAll(".fields")
+                .data(board)
+                .enter()
+                .append("g");
+
+            svg.append("rect")
+                .style("class", "fields")
+                .style("class", "rects")
+                .attr("x", function (d) {
+                    return d.x*fieldSize;
+                })
+                .attr("y", function (d) {
+                    return d.y*fieldSize;
+                })
+                .attr("width", fieldSize + "px")
+                .attr("height", fieldSize + "px")
+                .style("fill", function (d) {
+                    if ( ((d.x%2 == 0) && (d.y%2 == 0)) ||
+                        ((d.x%2 == 1) && (d.y%2 == 1))    ) 
+                        return "beige";
+                    else
+                        return "tan";
+                });
+        }
+
+        const drawSolutions = (solutions) => {
+            svg.selectAll('.queen').remove() 
+            solutions.forEach((solution,index) => {
+                    console.log
+                    svg.append("text")
+                    .style("font-size", "40")
+                    .attr('class', 'queen')
+                    .attr("text-anchor", "middle")
+                    .attr("dy", `${(solution*10)+(solution+1)*30}px`)
+                    .attr("dx", `${(index*20)+(index+1)*20}px`)
+                    .text('\u265B');
+                })
+        }
+
+        document.querySelector('#search').addEventListener('click', function(e){
+            e.preventDefault();
+            page = 1;
+            document.querySelector('#chessboard').innerHTML = "";
+            boardDimension = parseInt(document.querySelector('#dimension').value);
+            boardSize = boardDimension*fieldSize;
+            fetch(`/cases/${boardDimension}/answer`)
+            .then(response => {
+                if(response.ok)
+                    return response.json()
+                throw new Error(response.statusText);
+            })
+            .then(json => {
+                drawChessBoard()
+                drawSolutions(json.data[0].solution)
+            }).catch(error => {
+                document.querySelector('#chessboard').innerHTML = error;
+            })
+        });
+
+        document.querySelector('#next').addEventListener('click', function(e){
+            e.preventDefault();
+            page += 1;
+            fetch(`/cases/${boardDimension}/answer?page=${page}`)
+            .then(response => {
+                if(response.ok)
+                    return response.json()
+                throw new Error(response.statusText);
+            })
+            .then(json => {
+                drawSolutions(json.data[0].solution)
+            }).catch(error => {
+                document.querySelector('#chessboard').innerHTML = error;
+            })
+        });
+
+        document.querySelector('#search').dispatchEvent(new Event('click'));
+</script>
+</body>
+</html>

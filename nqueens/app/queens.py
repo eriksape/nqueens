@@ -1,5 +1,8 @@
-from database import connection, Case, Answer
+from .database import SessionLocal
+from .models import Case, Answer
 from sqlalchemy.sql import func
+
+connection = SessionLocal()
 
 
 class ChessBoard:

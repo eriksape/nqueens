@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Initilize database
-      run: docker-compose run nqueens flask initdb
+      run: docker-compose build && docker-compose run nqueens flask initdb
     - name: Run the test with docker-compose
       run: docker-compose run nqueens python -m pytest app/tests/tests.py
     - name: Run proposed tests without store it in database

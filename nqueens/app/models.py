@@ -1,7 +1,7 @@
 import datetime
-from sqlalchemy import Column, Integer, ARRAY, ForeignKey, BigInteger
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, ARRAY, BigInteger
 from .database import Base
+
 
 class DictMixIn:
     def to_dict(self):
@@ -13,6 +13,7 @@ class DictMixIn:
             else getattr(self, column.name).isoformat()
             for column in self.__table__.columns
         }
+
 
 class Case(Base, DictMixIn):
     """The NQueen's case"""

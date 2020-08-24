@@ -1,5 +1,5 @@
 from app.queens import ChessBoard
-from known_solutions import solutions
+from .known_solutions import solutions
 
 
 def board_solution(dimension, connection):

@@ -31,7 +31,7 @@ We can see the count per record in the datase with the next query:
 
 ![stored_solutions](https://github.com/eriksape/nqueens/blob/master/.github/stored_solutions.png?raw=true)
 
-## Refereences
+## References
 
 - Martin Richards https://www.cl.cam.ac.uk/~mr10/backtrk.pdf
 - Andrés Muñoz https://www.youtube.com/watch?v=XQYGwKiqV3Y

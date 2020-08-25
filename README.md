@@ -20,7 +20,7 @@ Generating from 8x8 to 13x13 N size we have the next results:
 
 ## Bitwise:
 
-Generating from 8x8 to 15x15 N size we have3 the next results:
+Generating from 8x8 to 15x15 N size we have the next results:
 ![bitwise_8x8_to_15x15.png](https://github.com/eriksape/nqueens/blob/master/.github/bitwise_8x8_to_15x15.png?raw=true)
 
 The problem here is that we have 2,279,184 solutions that we want to store in a database. With some optimizations with SQLAlchemy we can have the next results:

@@ -52,6 +52,8 @@ To run the project we need Docker installed in your system.
 To create the database run the script
 `docker-compose run nqueens flask initdb`
 
+### Tests
+
 To run the tests we have some scripts:
 
  - This is to check from 1x1 to 12x12 `docker-compose run nqueens python -m pytest app/tests/tests.py` helped me with some refactors

@@ -59,6 +59,6 @@ To run the tests we have some scripts:
  - This is to run from 8x8 to 15x15 and save it into database `docker-compose run nqueens python -m pytest app/tests/tests_solutions.py`
  - This is to run from 8x8 to 15x15 from database `docker-compose run nqueens python -m pytest app/tests/tests_solutions_stored.py`
  
-Tests are automated thanks to github actions ♥️
+**Tests are automated thanks to github actions** ♥️
 
-Here are automated test runned in this project
+[Here](https://github.com/eriksape/nqueens/actions) are automated test runned in this project

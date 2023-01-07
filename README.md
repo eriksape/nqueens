@@ -63,4 +63,4 @@ To run the tests we have some scripts:
  
 **Tests are automated thanks to github actions** ♥️
 
-[Here](https://github.com/eriksape/nqueens/actions) are automated test runned in this project
+[Here](https://github.com/eriksape/nqueens/actions) are automated test runned in this project.
